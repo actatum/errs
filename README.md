@@ -27,6 +27,8 @@ go get github.com/actatum/errs
 package main
 
 import (
+    "fmt"
+    
     "github.com/actatum/errs"
 )
 
