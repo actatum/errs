@@ -11,7 +11,7 @@ errs is a package providing application errors for go services.
 The package provides error codes that are human readable and map well to transport error codes or status'. 
 It also provides a constructor for new errors and ability to parse the code and message from a go error interface if the packages
 provided Error type is the underlying implementation. This package also provides some smaller packages for interacting with different
-transport protocols and translating errors to the expected result in each protocol e.g.(http, gRPC).
+transport protocols and translating errors to the expected result in each protocol e.g.(http, gRPC, connect).
 
 ## Installation
 
