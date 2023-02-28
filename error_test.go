@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
+
+	"github.com/pkg/errors"
 )
 
 func TestCode_String(t *testing.T) {
@@ -213,6 +215,20 @@ func TestErrorCode(t *testing.T) {
 			},
 			want: Internal,
 		},
+		{
+			name: "wrapped with fmt package",
+			args: args{
+				fmt.Errorf("wrapped: %w", Errorf(Unauthorized, "unauthorized")),
+			},
+			want: Unauthorized,
+		},
+		{
+			name: "wrapped with pkg/errors package",
+			args: args{
+				errors.Wrap(Errorf(Unauthorized, "unauthorized"), "wrapped"),
+			},
+			want: Unauthorized,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -245,6 +261,20 @@ func TestErrorMessage(t *testing.T) {
 				fmt.Errorf("non Error"),
 			},
 			want: "internal error",
+		},
+		{
+			name: "wrapped with fmt package",
+			args: args{
+				fmt.Errorf("wrapped: %w", Errorf(Unauthorized, "unauthorized")),
+			},
+			want: "unauthorized",
+		},
+		{
+			name: "wrapped with pkg/errors package",
+			args: args{
+				errors.Wrap(Errorf(Unauthorized, "unauthorized"), "wrapped"),
+			},
+			want: "unauthorized",
 		},
 	}
 	for _, tt := range tests {
