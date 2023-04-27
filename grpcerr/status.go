@@ -32,6 +32,8 @@ func codeToGRPCCode(code errs.Code) codes.Code {
 		return codes.PermissionDenied
 	case errs.NotFound:
 		return codes.NotFound
+	case errs.Conflict:
+		return codes.AlreadyExists
 	default:
 		return codes.Internal
 	}

@@ -49,6 +49,13 @@ func TestNewFromError(t *testing.T) {
 			want: connect.NewError(connect.CodeNotFound, errs.Errorf(errs.NotFound, "error")),
 		},
 		{
+			name: "conflict",
+			args: args{
+				err: errs.Errorf(errs.Conflict, "error"),
+			},
+			want: connect.NewError(connect.CodeAlreadyExists, errs.Errorf(errs.Conflict, "error")),
+		},
+		{
 			name: "internal",
 			args: args{
 				err: errs.Errorf(errs.Internal, "error"),

@@ -48,6 +48,13 @@ func TestStatusFromError(t *testing.T) {
 			want: status.New(codes.NotFound, "error"),
 		},
 		{
+			name: "conflict",
+			args: args{
+				err: errs.Errorf(errs.Conflict, "error"),
+			},
+			want: status.New(codes.AlreadyExists, "error"),
+		},
+		{
 			name: "internal",
 			args: args{
 				err: errs.Errorf(errs.Internal, "error"),

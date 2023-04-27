@@ -50,6 +50,8 @@ func codeToStatus(code errs.Code) int {
 		return http.StatusForbidden
 	case errs.NotFound:
 		return http.StatusNotFound
+	case errs.Conflict:
+		return http.StatusConflict
 	default:
 		return http.StatusInternalServerError
 	}

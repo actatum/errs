@@ -72,6 +72,18 @@ func TestRenderError(t *testing.T) {
 			wantStatus: http.StatusNotFound,
 		},
 		{
+			name: "conflict",
+			args: args{
+				err: errs.Errorf(errs.Conflict, "conflict"),
+				w:   httptest.NewRecorder(),
+			},
+			want: ErrorResponse{
+				Code:    errs.Conflict.String(),
+				Message: "conflict",
+			},
+			wantStatus: http.StatusConflict,
+		},
+		{
 			name: "internal",
 			args: args{
 				err: errs.Errorf(errs.Internal, "super secret error message"),
