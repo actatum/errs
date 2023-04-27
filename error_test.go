@@ -75,6 +75,13 @@ func TestCodeFromString(t *testing.T) {
 			want: PermissionDenied,
 		},
 		{
+			name: "conflict",
+			args: args{
+				s: "conflict",
+			},
+			want: Conflict,
+		},
+		{
 			name: "internal",
 			args: args{
 				s: "internal",

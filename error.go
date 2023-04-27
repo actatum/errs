@@ -21,6 +21,7 @@ var (
 	Invalid          = Code{"invalid"}
 	Unauthorized     = Code{"unauthorized"}
 	PermissionDenied = Code{"permission_denied"}
+	Conflict         = Code{"conflict"}
 )
 
 // CodeFromString parses a Code from the given string. If no code exists for the
@@ -35,6 +36,8 @@ func CodeFromString(s string) Code {
 		return Unauthorized
 	case PermissionDenied.slug:
 		return PermissionDenied
+	case Conflict.slug:
+		return Conflict
 	default:
 		return Internal
 	}

@@ -22,6 +22,8 @@ func codeToConnectCode(code errs.Code) connect.Code {
 		return connect.CodePermissionDenied
 	case errs.NotFound:
 		return connect.CodeNotFound
+	case errs.Conflict:
+		return connect.CodeAlreadyExists
 	default:
 		return connect.CodeInternal
 	}
